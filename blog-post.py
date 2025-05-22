@@ -28,12 +28,13 @@ class BlogPost:
 
     
     def create_post(self,):
-        self.title = str(input('Enter blog title: ')).strip()
-        self.body = str(input('Body : ')).strip()
+        title = str(input('Enter blog title: ')).strip()
+        body = str(input('Body : ')).strip()
 
-        if self.title and self.body:
-            BlogPost.blog_list.append(self)
-            print(f"Post '{self.title}' created successfully!")
+        if title and body:
+            new_post = BlogPost(self.user, title, body)
+            BlogPost.blog_list.append(new_post)
+            print(f"Post '{title}' created successfully!")
 
         else:
             print('Error: Both title and body are required.')
@@ -48,7 +49,7 @@ class BlogPost:
         for i,blog in enumerate(BlogPost.blog_list, start=1):
             print(f'Post {i}:\n{blog.user.username}: \n{blog}')
         print()
-        print("n==== END ====")
+        print("\n==== END ====")
         print()
 
     
