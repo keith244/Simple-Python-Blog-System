@@ -1,4 +1,7 @@
+import time
+from datetime import datetime
 class User:
+
     def __init__(self,username):
         self.username = username
 
@@ -32,9 +35,12 @@ class BlogPost:
         body = str(input('Body : ')).strip()
 
         if title and body:
+            for i in range(3):
+                print('Posting...')
+                time.sleep(0.5)
             new_post = BlogPost(self.user, title, body)
             BlogPost.blog_list.append(new_post)
-            print(f"Post '{title}' created successfully!")
+            print(f"Post: '{title}' created successfully!")
 
         else:
             print('Error: Both title and body are required.')
@@ -43,6 +49,12 @@ class BlogPost:
     def show_posts(self):
         if not BlogPost.blog_list:
             print('No posts to show.')
+            print("Press Y to add the first post")
+            choice = input('Enter Y to add new post or N to cancel: ').lower()
+            if choice == 'y':
+                self.create_post()
+            else:
+                return
             return 
         print()
         print("\n==== ALL POSTS ====")
